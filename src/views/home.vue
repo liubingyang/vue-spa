@@ -6,11 +6,15 @@
 			<div class="submit" onselectstart="return false;" @click='searchSubmit()'>
 				搜索
 			</div>
+			<transition name='fade'>
+  <!-- ... -->
+
 			<div class="searchResult" v-show='searchResultShow'>
 				<ul>
 					<li v-for='(item,i) in searchResult' v-show='i<5' @click='choseSearch(item)'>{{item}}</li>
 				</ul>
 			</div>
+			</transition>
 		</div>
 		</div>
 		<div class="searchResultHtml">

@@ -10,11 +10,28 @@ var url = "https://www.battlenet.com.cn/forums/zh/wow/2661594/";
 var log = console.log;
 var arr = [];
 
-let openingTime=0;
-
+let openTime=new Date();
+let openingTime='';
+let userInformations=[];
+(function(){
+	setInterval(function(){
+		openingTime=new Date()-openTime;
+	},1000)
+})()
+router.get('/userInformations', function(req, res) {
+       	res.status(200);
+		res.json(userInformations)
+});
+router.get('/openingTime', function(req, res) {
+       	res.status(200);
+		res.json(openingTime)
+});
 router.get('/', function(req, res) {
+	req.headers.lastLoadTime=new Date().getTime();
+	userInformations.push(req.headers);
 	log('获取到/,返回首页')
 	res.type('text/html');
+	res.render('index');
 });
 
 router.get('/getList',function(req,res,next){

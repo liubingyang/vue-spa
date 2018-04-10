@@ -11,7 +11,11 @@
 	    	<router-view></router-view>
 	    </div>
 	    <div class="app_aside fr">
-	    	{{msg}}
+	    	<div class="openingTime">
+	    		已开服：{{openingTime}}
+	    	</div>
+	    	<!-- 客户端登录信息 -->
+	    	<browserInfo></browserInfo>	
 	    </div>
 	  </div>
   </div>
@@ -19,11 +23,12 @@
 
 <script>
 import vueLoading from 'vue-loading-template'
+import browserInfo from'./views/browserInfo'
 export default {
   name: 'app',
   	data () {
     	return {
-      		msg: 'Welcome to Your Vue.js App'
+      		openingTime:'',
   		}
 	},
 	computed:{
@@ -33,7 +38,26 @@ export default {
 		}
 	},
 	components:{
-      vueLoading
+      vueLoading,
+      browserInfo
+    },
+    created(){
+    	this.getServerTime();
+    },
+    methods:{
+    	getServerTime(){
+    		this.$http.get('http://localhost:3000/openingTime').then(data=>{
+    		let openingTime=Number(data.body);
+    		setInterval(()=>{
+	    		openingTime+=100;
+				let days = parseInt(openingTime / (1000 * 60 * 60 * 24));
+	       	 	let hours = parseInt((openingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	        	let minutes = parseInt((openingTime % (1000 * 60 * 60)) / (1000 * 60));
+	        	let seconds = ((openingTime % (1000 * 60)) / 1000).toFixed(1);
+	        	this.openingTime=days+'天 '+hours+'小时 '+minutes+'分 '+seconds+'秒'
+	    		},100)
+    		})
+    	},  	
     }
 }
 </script>
@@ -46,7 +70,7 @@ export default {
 	background: #eee;
 }	
 .app_left{
-	width: 80%;
+	width: 75%;
 	background: white;
 	min-height:100vh;
 	box-shadow: -1px 0 0 0 #ccc inset;
@@ -61,6 +85,14 @@ export default {
 	}
 }
 .app_aside{
-	width: 20%;
+	width: 25%;
+	.openingTime{
+		text-align: center;
+		font-size: 14px;
+		color:green;
+		line-height: 30px;
+		margin-top:20px;
+	}
 }
+
 </style>

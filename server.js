@@ -31,7 +31,6 @@ app.use(webpackHotMiddleware(compiler));
 app.listen(3000, function(){
   console.log('App (dev) is now running on port 3000!');
 });
-//
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
@@ -42,7 +41,6 @@ app.all('*', function(req, res, next) {
    res.header("Content-Type", "application/json;charset=utf-8");
    next();
 });
-
 app.use('/',require("./service/get"))
 
 
