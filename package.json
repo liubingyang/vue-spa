@@ -1,0 +1,52 @@
+{
+  "name": "vuexx",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "limbo",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev supervisor -w server,server.js,get.js -e node,js,html server",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "encoding": "^0.1.12",
+    "iconv-lite": "^0.4.21",
+    "node-gyp": "^3.6.2",
+    "node-pre-gyp": "^0.9.0",
+    "vue": "^2.5.11",
+    "vue-loading-template": "^0.1.7"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cheerio": "^1.0.0-rc.2",
+    "consolidate": "^0.15.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "ejs": "^2.5.7",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.5.3",
+    "reload": "^2.2.2",
+    "request": "^2.83.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "swig": "^1.4.2",
+    "vue-loader": "^13.0.5",
+    "vue-resource": "^1.3.5",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.4.4",
+    "vuex": "^3.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-hot-middleware": "^2.21.0"
+  }
+}
