@@ -4,7 +4,7 @@
 	  	<div class="app_left fl">
 	    	<ul class="nav">
 	      		<li><router-link to="/">首页</router-link></li>
-	      		<li><router-link to="/forum">魔兽论坛</router-link></li>
+	      		<li @click="$store.commit('forumShowStepControl',1)"><router-link to="/forum">魔兽论坛</router-link></li>
 	    	</ul>
 	    	<vue-loading v-show='loadingSwitch' type="cylon" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
 	    	 <!-- 'balls', 'bars', 'beat', 'bubbles', 'cylon', 'spin', 'spiningDubbles', 'barsCylon' -->

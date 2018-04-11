@@ -41,6 +41,8 @@ app.all('*', function(req, res, next) {
    res.header("Content-Type", "application/json;charset=utf-8");
    next();
 });
+
 app.use('/',require("./service/get"))
+app.use('/juejinResources',require('./service/juejinResources'))
 
 

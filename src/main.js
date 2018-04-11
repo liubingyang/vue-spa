@@ -37,5 +37,9 @@ window.creatScript=function(url) {
 };
 window.toNewPage=function(url){
 	let a=document.createElement('a');
-
+	a.href=url;
+	a.target='_blank';
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
 }

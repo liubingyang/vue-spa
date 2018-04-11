@@ -33,7 +33,6 @@ export default {
     methods:{
     	getUserInformations(){
     		this.$http.get('http://localhost:3000/userInformations').then(data=>{
-    			log(data);
     			let arr=data.body;
     			arr.forEach(v=>{
     				let u=v['user-agent'];
@@ -67,7 +66,7 @@ export default {
     }
 }	
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	.userInformations{
 		h3{
 			color:red;

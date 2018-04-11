@@ -15,6 +15,7 @@ html,body{
 .w30{width: 30%;}
 .w40{width: 40%;}
 .w50{width: 50%;}
+.w60{width: 60%;}
 .w70{width: 70%;}
 .w80{width: 80%;}
 .text_center{text-align: center;}
@@ -28,4 +29,9 @@ html,body{
     top: 50%;
     transform: translate(-50%,-50%);
 }
+.inherit{color:#ccc;}
+.red{color:red;}
+.pink{color:#b71ed7;}
 .text-center{text-align: center}
+.fade-enter-active, .fade-leave-active {transition: opacity .2s;}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {opacity: 0;}

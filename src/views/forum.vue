@@ -1,5 +1,7 @@
 <template>
+	<transition name="fade">
 	<div id="app">
+		 <transition name="fade">
 		<ul class="mt20 forum_nav" v-show='step==1'>
 			<li class="clearfix text_center">
 				<div class="fl w40 text_over">title</div>
@@ -17,9 +19,11 @@
 				<div class="fl w20">{{item.date}}</div>
 			</li>
 		</ul>
+		 </transition>
+		 <transition name="fade">
 		<div class="forum_content" v-show='step==2'>
 			<div class="clearfix">
-				<div class="cont_tit fr" @click='step=1'>return</div>
+				<div class="cont_tit fr" @click="$store.commit('forumShowStepControl',1)">return</div>
 			</div>
 
 			<div class="clearfix">
@@ -29,30 +33,32 @@
 				</div>
 			</div>
 		</div>
+		 </transition>
 	</div>
+</transition>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
 	export default {
 		name: 'forum',
 		data() {
 			return {
-				step: 1,
 				dataList: [],
 				choseInfo: {},
 			}
 		},
-		computed: mapGetters({
-			three: 'dcount'
-		}),
+		computed: {
+			step(){
+				return this.$store.state.forumShowStep;
+			}
+		},
 		created() {
 			this.getList();
 		},
 		methods: {
 			toDetails(item) {
 				this.choseInfo = item || {}
-				this.step = 2
+				this.$store.commit('forumShowStepControl',2)
 			},
 			getList() {
 				this.$store.commit('loadingShow');
@@ -68,7 +74,7 @@
 
 <style lang="scss" scoped>
 	#app {
-		padding: 0 50px;
+		padding: 0 20px;
 	}
 	
 	.forum_nav {

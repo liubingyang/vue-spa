@@ -13,6 +13,10 @@ var arr = [];
 let openTime=new Date();
 let openingTime='';
 let userInformations=[];
+let middleForumList={
+	loadingTime:0,
+	list:[]
+};
 (function(){
 	setInterval(function(){
 		openingTime=new Date()-openTime;
@@ -35,7 +39,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/getList',function(req,res,next){
-	log('获取到/getList')
+	if((new Date()-middleForumList.loadingTime)<1000*60*1){
+		res.status(200),
+		res.json(middleForumList.list);
+		return;
+	}
+	middleForumList.loadingTime=new Date();
 	//采用http模块向服务器发起一次get请求      
 	ajax().then(function($){
 		var a = {};
@@ -69,6 +78,7 @@ router.get('/getList',function(req,res,next){
 		}
 		
 		Promise.all(ajaxArr).then(function(){
+			middleForumList.list=arr;
 			res.status(200),
 			res.json(arr)
 		})
@@ -111,7 +121,6 @@ function ajax(a){
 				//监听end事件，如果整个网页内容的html都获取完毕，就执行回调函数
 				res.on('end', function() {
 					log('请求完成')
-					log(html)
 					var $ = cheerio.load(html); //采用cheerio模块解析html
 	//				fun && fun($);
 					resolve($)

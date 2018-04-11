@@ -1,4 +1,5 @@
 <template>
+	<transition name='fade'>	
 	<div class="wrap clearfix">
 		<div class="searchWrap">	
 		<div class="search clearfix">
@@ -7,8 +8,6 @@
 				搜索
 			</div>
 			<transition name='fade'>
-  <!-- ... -->
-
 			<div class="searchResult" v-show='searchResultShow'>
 				<ul>
 					<li v-for='(item,i) in searchResult' v-show='i<5' @click='choseSearch(item)'>{{item}}</li>
@@ -17,13 +16,17 @@
 			</transition>
 		</div>
 		</div>
-		<div class="searchResultHtml">
-			<iframe :src="searchResultLst" width="100%" height="100%"></iframe>
+		<!-- 掘金列表 -->
+		<div class="juejinResources">
+			<juejinResources></juejinResources>
 		</div>
 	</div>
+	</transition>	
 </template>
 
 <script>
+	import juejinResources from "./juejinResources"
+
 	export default {
 		name: 'home',
 		data(){
@@ -33,6 +36,9 @@
 				searchResultShow:false,
 				searchResultLst:'',
 			}
+		},
+		components:{
+			juejinResources
 		},
 		watch:{
 			searchResult(l){
@@ -82,9 +88,7 @@
 		.searchWrap{
 			height: 80px;
 		}
-		.searchResultHtml{
-			height: 500px;
-		}
+		
 		background: #fff;
 		position: relative;
 		.search{
@@ -108,7 +112,8 @@
 				position: absolute;
 				left: -1px;
 				width: 100%;
-				margin-top:0;
+				margin-top:1px;
+				background:#fff;
 				border:1px solid #ccc;
 				border-top:none; 
 				li{

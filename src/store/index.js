@@ -10,6 +10,7 @@ export default new Vuex.Store({
 		loadingSwitch:false,
 		arrList:[],
 		searchInfo:{},
+		forumShowStep:1,
 	},
 	mutations:{
 		increment(state){
@@ -21,6 +22,9 @@ export default new Vuex.Store({
 		loadingHide(state){
 			state.loadingSwitch=false
 		},
+		forumShowStepControl(state,val){
+			state.forumShowStep=val||1
+		}
 
 	},
 	getters:{
